@@ -1,0 +1,32 @@
+table {
+  width:100%;
+}
+
+input {
+  width: 60%;
+}
+
+mat-form-field {
+  width: 60%;
+}
+
+mat-card {
+  width: 100%;
+}
+
+.mat-cell {
+  /* font-size:12px; */
+  /* font-family: Verdana,Sans-Serif; */
+  display: table-cell;
+  height: 48px;
+  vertical-align: middle;
+  /* margin-left: 2rem; */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-left: 2px solid rgba(0, 0, 0, 0.12);
+  border-right: 2px solid rgba(0, 0, 0, 0.12);
+  }
+
+  .mat-header-cell {
+    font-size:14px;
+  }

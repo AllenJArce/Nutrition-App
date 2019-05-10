@@ -1,0 +1,24 @@
+mat-slider {
+  width: 300px;
+  margin-right: 85%;
+}
+
+table {
+  width: 100%;
+}
+
+button {
+  margin-right: 35%;
+}
+
+.comment-class {
+  width: 70%;
+}
+
+.waterSelect {
+  width: 70%;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 35px;
+}

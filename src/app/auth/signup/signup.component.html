@@ -1,0 +1,87 @@
+<mat-card>
+  <mat-spinner color="accent" *ngIf="isLoading"> </mat-spinner>
+  <h1>Sign up here!</h1>
+  <form (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!isLoading">
+    <mat-form-field>
+      <input
+        matInput
+        name="firstName"
+        ngModel
+        type="text"
+        placeholder="First Name"
+        #firstNameInput="ngModel"
+        required
+      />
+      <mat-error *ngIf="firstNameInput.invalid"
+        >Please enter your first name.</mat-error
+      >
+
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        name="lastName"
+        ngModel
+        type="text"
+        placeholder="Last Name"
+        #lastNameInput="ngModel"
+        required
+      />
+      <mat-error *ngIf="lastNameInput.invalid"
+        >Please enter your last name.</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        name="email"
+        ngModel
+        type="email"
+        placeholder="E-Mail"
+        #emailInput="ngModel"
+        required
+        email
+      />
+      <!-- requried email validates that entered info is an email -->
+      <mat-error *ngIf="emailInput.invalid"
+        >Please enter a valid email.</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="password"
+        name="password"
+        ngModel
+        matInput
+        placeholder="Password"
+        #passwordInput="ngModel"
+        required
+      />
+      <mat-error *ngIf="passwordInput.invalid"
+        >Please enter a valid password.</mat-error
+      >
+    </mat-form-field>
+    <!-- TODO: Add ngIf to check if passwords are matching -->
+    <!-- <mat-form-field>
+          <input type="password" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
+          <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+        </mat-form-field> -->
+    <mat-form-field>
+      <input
+        matInput
+        name="phone"
+        ngModel
+        type="tel"
+        placeholder="Phone Number"
+        #phoneInput="ngModel"
+      />
+      <mat-error *ngIf="phoneInput.invalid"
+        >Please enter a valid phone number.</mat-error
+      >
+    </mat-form-field>
+    <!-- TODO: Add radio button for option to receive text notifications -->
+    <button mat-raised-button color="accent" type="submit" *ngIf="!isLoading">
+      Signup
+    </button>
+  </form>
+</mat-card>

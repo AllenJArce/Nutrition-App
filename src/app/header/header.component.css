@@ -1,0 +1,20 @@
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+ul {
+  display: flex;
+}
+
+/* Toolbar uses flex box by default and this makes sure that the spacer element will take available
+remaining space between the other two elements. In this case MyMessages and New Post */
+.spacer {
+  flex: 1 1 auto;
+}

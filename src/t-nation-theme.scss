@@ -1,0 +1,12 @@
+//This is a SASS file, superset of CSS file language that takes CSS to next level, doesn't run in browser
+@import '~@angular/material/theming';
+
+@include mat-core();  //this is a mixin
+
+$t-nation-theme-primary: mat-palette($mat-blue, A400);
+$t-nation-theme-accent: mat-palette($mat-green, 600, A700);
+$t-nation-theme-warn: mat-palette($mat-red);
+
+$t-nation-theme: mat-light-theme($t-nation-theme-primary, $t-nation-theme-accent, $t-nation-theme-warn);
+
+@include angular-material-theme($t-nation-theme);

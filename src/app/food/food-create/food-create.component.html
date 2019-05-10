@@ -1,0 +1,127 @@
+<h1>THIS IS FOOD </h1>
+<mat-card>
+  <mat-spinner *ngIf="isLoading"> </mat-spinner>
+  <form [formGroup]="foodForm" (submit)="onSaveFood()" *ngIf="!isLoading">
+    <!-- Make category a select list -->
+
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        formControlName="category"
+        placeholder="Category"
+      />
+      <mat-error *ngIf="foodForm.get('category').invalid"
+        >Please select a valid category.</mat-error
+      >
+    </mat-form-field>
+    <div>
+        <mat-form-field>
+          <input matInput type="text" formControlName="type" placeholder="Type" />
+          <mat-error *ngIf="foodForm.get('type').invalid"
+            >Please enter a valid food type.</mat-error
+          >
+        </mat-form-field>
+      </div>
+    <div>
+      <mat-form-field>
+        <input matInput type="text" formControlName="name" placeholder="Name" />
+        <mat-error *ngIf="foodForm.get('name').invalid"
+          >Please enter a valid food name.</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input
+          matInput
+          type="number"
+          formControlName="carbs"
+          placeholder="Carbs"
+        />
+        <mat-error *ngIf="foodForm.get('carbs').invalid"
+          >Please enter a valid number of carbs.</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input
+          matInput
+          type="number"
+          formControlName="protein"
+          placeholder="Proteins"
+        />
+        <mat-error *ngIf="foodForm.get('protein').invalid"
+          >Please enter a valid number of protein.</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput type="number" formControlName="fat" placeholder="Fat" />
+        <mat-error *ngIf="foodForm.get('fat').invalid"
+          >Please enter a valid number of fat.</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input
+          matInput
+          type="number"
+          formControlName="kCals"
+          placeholder="Kcals"
+        />
+        <mat-error *ngIf="foodForm.get('kCals').invalid"
+          >Please enter a valid number of Kcals.</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input
+          matInput
+          type="number"
+          formControlName="serving"
+          placeholder="serving"
+        />
+        <mat-error *ngIf="foodForm.get('serving').invalid"
+          >Please enter a valid serving number.</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input
+          matInput
+          type="string"
+          formControlName="measurement"
+          placeholder="Measurement"
+        />
+        <mat-error *ngIf="foodForm.get('measurement').invalid"
+          >Please enter a valid serving measurement (Ex: slices, chips,
+          ozs).</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input
+          matInput
+          type="number"
+          formControlName="exchanges"
+          placeholder="Exchanges"
+        />
+        <mat-error *ngIf="foodForm.get('exchanges').invalid"
+          >Please enter a valid number of exchanges.</mat-error
+        >
+      </mat-form-field>
+      <button mat-raised-button
+      color="accent"
+      type="submit">Save Post</button>
+    </div>
+  </form>
+</mat-card>
+
+<!-- TODO: Add a message saying food added! -->

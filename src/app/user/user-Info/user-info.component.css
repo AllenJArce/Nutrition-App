@@ -1,0 +1,10 @@
+/* mat-card {
+  width: 80%;
+  margin: auto;
+} */
+
+:host {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
