@@ -13,9 +13,10 @@ import { MealPlanComponent } from 'src/app/meal-plan/meal-plan.component';
 import { AttemptComponent } from 'src/app/attempts/attempt.component';
 import { FoodCreateComponent } from 'src/app/food/food-create/food-create.component';
 import { FoodListComponent } from 'src/app/food/food-list/food-list.component';
+import { HomeComponent } from 'src/app/home/home.component';
 
 const routes: Routes = [
-  { path: '', component: UserInfoComponent }, // if path is empty, defaults to main page
+  { path: '', component: HomeComponent }, // if path is empty, defaults to main page
   // { path: 'create', component: SignupComponent, canActivate: [AuthGuard] },
   {
     path: 'edit/:userId',
@@ -49,6 +50,11 @@ const routes: Routes = [
   },
   {
     path: 'food-create',
+    component: FoodCreateComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'food-edit/:foodId',
     component: FoodCreateComponent,
     canActivate: [AuthGuard]
   },

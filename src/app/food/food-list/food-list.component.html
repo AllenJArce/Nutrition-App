@@ -1,5 +1,6 @@
 <h1>THIS IS LIST OF FOODS!</h1>
-<mat-card>
+<mat-spinner color="accent" *ngIf="isLoading"></mat-spinner>
+<mat-card *ngIf="!isLoading">
   <mat-form-field *ngIf="!isLoading">
     <input
       matInput
@@ -7,14 +8,96 @@
       placeholder="Filter"
     />
   </mat-form-field>
-  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <a
+    *ngIf="!isLoading"
+    class="add-food-button"
+    align="end"
+    mat-raised-button
+    color="accent"
+    routerLink="/food-create"
+    routerLinkActive="mat-accent"
+  >
+    ADD A NEW FOOD
+  </a>
+
   <table
     *ngIf="!isLoading"
     mat-table
     [dataSource]="dataSource"
+    multiTemplateDataRows
     class="mat-elevation-z8"
   >
-    <ng-container matColumnDef="category">
+    <ng-container
+      matColumnDef="{{ column }}"
+      *ngFor="let column of displayedColumns"
+    >
+      <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+      <td mat-cell *matCellDef="let foods">{{ foods[column] }}</td>
+    </ng-container>
+
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container matColumnDef="expandedDetail">
+      <td
+        mat-cell
+        *matCellDef="let foods"
+        [attr.colspan]="displayedColumns.length"
+      >
+        <div
+          class="foods-detail"
+          [@detailExpand]="foods == expandedFood ? 'expanded' : 'collapsed'"
+        >
+          <div class="foods-diagram">
+            <!-- <div class="foods-category"> {{foods.category}} </div>
+            <div class="foods-type"> {{foods.type}} </div>
+            <div class="foods-name"> {{foods.name}} </div> -->
+            <!-- <div class="foods-carbs"> Carbs: {{foods.carbs}}g </div>
+            <div class="foods-protein"> Protein: {{foods.protein}}g </div>
+            <div class="foods-fat"> Fat: {{foods.fat}}g </div>
+            <div class="foods-kCals"> KCals: {{foods.kCals}} </div>
+            <div class="foods-serving"> Serving: {{foods.serving}} {{foods.measurement}}</div>
+            <div class="foods-measurement"> {{foods.measurement}} </div>
+            <div class="foods-exchanges"> Exchanges: {{foods.exchanges}} </div> -->
+
+            <div class="food-nutrition">
+              <span class="spacer">Carbs: {{ foods.carbs }}g </span>
+              <span class="spacer">Protein: {{ foods.protein }}g</span>
+              <span class="spacer">Fat: {{ foods.fat }}g</span>
+              <span class="spacer">KCals: {{ foods.kCals }}</span>
+              <span class="spacer">
+                Serving: {{ foods.serving }} {{ foods.measurement }}</span>
+              <span class="spacer">Exchanges: {{ foods.exchanges }}</span>
+            </div>
+
+            <div class="edit-delete-buttons">
+              <a
+                mat-raised-button
+                color="accent"
+                [routerLink]="['/food-edit', foods.id]"
+                routerLinkActive="mat-accent"
+              >
+                EDIT
+              </a>
+              <!-- Add message saying food deleted -->
+              <button
+                class="delete-button"
+                mat-raised-button
+                align="end"
+                color="warn"
+                (click)="onDelete(foods.id)"
+              >
+                DELETE
+              </button>
+            </div>
+          </div>
+          <!-- <div class="example-element-description">
+              {{foods.measurement}}
+              <span class="example-element-description-attribution"> -- Wikipedia </span>
+            </div> -->
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="category">
       <th mat-header-cell *matHeaderCellDef>Category</th>
       <td mat-cell *matCellDef="let foods">{{ foods.category }}</td>
     </ng-container>
@@ -58,22 +141,37 @@
       <th mat-header-cell *matHeaderCellDef>Measurement</th>
       <td mat-cell *matCellDef="let foods">{{ foods.measurement }}</td>
     </ng-container>
+
     <ng-container matColumnDef="exchanges">
       <th mat-header-cell *matHeaderCellDef>Exchanges</th>
       <td mat-cell *matCellDef="let foods">{{ foods.exchanges }}</td>
-    </ng-container>
+    </ng-container> -->
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+   -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let foods; columns: displayedColumns"
+      class="foods-row"
+      [class.food-expanded-row]="expandedFood === foods"
+      (click)="expandedFood = expandedFood === foods ? null : foods"
+    ></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: ['expandedDetail']"
+      class="foods-detail-row"
+    ></tr>
   </table>
 
-  <a
+  <!-- <a
     *ngIf="!isLoading"
     mat-raised-button
     color="accent"
     routerLink="/food-create"
     routerLinkActive="mat-accent"
   >
-    Add a Food
-  </a>
+    ADD A FOOD
+  </a> -->
 </mat-card>

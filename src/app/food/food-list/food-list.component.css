@@ -3,30 +3,120 @@ table {
 }
 
 input {
-  width: 60%;
+  width: 40%;
+  margin-right: 30%;
 }
 
 mat-form-field {
-  width: 60%;
+  width: 40%;
+  margin-right: 30%;
 }
 
 mat-card {
   width: 100%;
 }
 
-.mat-cell {
-  /* font-size:12px; */
-  /* font-family: Verdana,Sans-Serif; */
+/* .mat-cell {
+  font-size:12px;
+  font-family: Verdana,Sans-Serif;
   display: table-cell;
   height: 48px;
   vertical-align: middle;
-  /* margin-left: 2rem; */
+  margin-left: 2rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   border-top: 1px solid rgba(0, 0, 0, 0.12);
   border-left: 2px solid rgba(0, 0, 0, 0.12);
   border-right: 2px solid rgba(0, 0, 0, 0.12);
-  }
+  } */
 
   .mat-header-cell {
     font-size:14px;
+    font-weight: bold;
+  }
+
+  .food-nutrition {
+    margin-top: 5%;
+    font-weight: bold;
+    margin-bottom: 5%;
+  }
+
+  .spacer {
+   margin-right: 3rem;
+  }
+
+
+
+  tr.foods-detail-row {
+    height: 0;
+  }
+
+  tr.foods-row:not(.example-expanded-row):hover {
+    background: #f5f5f5;
+    cursor: pointer;
+  }
+
+  tr.foods-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+
+  .foods-row td {
+    border-bottom-width: 0;
+  }
+
+  .foods-detail {
+    overflow: hidden;
+    display: flex;
+  }
+
+  .foods-diagram {
+    /* min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px; */
+  }
+
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+
+  .example-element-description {
+    padding: 16px;
+  }
+
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }
+
+   button {
+    /* margin-top: 10%;
+    margin-left: 15; */
+    /* margin-right: 5%; */
+  }
+
+  .delete-button {
+    margin-left: 20rem;
+    /* margin-left: auto; */
+
+
+  }
+
+   /* a {
+    margin-top: 10%;
+    margin-right: 25%;
+  }  */
+
+  .add-food-button {
+    /* margin-left: 30%; */
+    /* margin-left: auto; */
+  }
+
+  .edit-delete-buttons {
+    /* margin-right: 15%; */
+    /* width: 100%; */
+    /* margin-top: 5%; */
+    /* justify-content: flex-end; */
   }

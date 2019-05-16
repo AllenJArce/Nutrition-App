@@ -12,7 +12,9 @@ router.put("/:id", checkAuth, FoodController.updateFood);
 
 router.get("", FoodController.getFoods);
 
-// router.get("/:id", FoodController.getFood);
+router.get("/:id", FoodController.getFood);
+
+// router.get("/:name", FoodController.getFood);
 
 router.delete("/:id", checkAuth, FoodController.deleteFood);
 

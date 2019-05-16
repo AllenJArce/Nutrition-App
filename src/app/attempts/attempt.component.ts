@@ -381,185 +381,185 @@ export class AttemptComponent implements OnInit {
     }
   ];
 
-  // mealData: MealData[] = [
-  //   {
-  //     mealType: 'Breakfast',
-  //     mealTime: { hours: 6, minutes: 30 },
-  //     carbs: [
-  //       {
-  //         type: 'Breads',
-  //         food: 'Bread (Whole wheat, Rye)',
-  //         numCarbs: 12,
-  //         numProtein: 3,
-  //         fat: 1,
-  //         kCals: 81,
-  //         servingNum: 1,
-  //         serving: 'slice',
-  //         exchanges: 1
-  //       },
-  //       {
-  //         type: 'Breads',
-  //         food: 'Udi\'s Multigrain Bread',
-  //         numCarbs: 12,
-  //         numProtein: 1,
-  //         fat: 2.25,
-  //         kCals: 70,
-  //         servingNum: 1,
-  //         serving: 'slice',
-  //         exchanges: 1
-  //       },
-  //       {
-  //         type: 'Cereals',
-  //         food: 'Oatmeal, Dry (Uncooked)',
-  //         numCarbs: 27,
-  //         numProtein: 4.5,
-  //         fat: 2.5,
-  //         kCals: 148.5,
-  //         servingNum: 0.5,
-  //         serving: 'cups',
-  //         exchanges: 2
-  //       },
-  //       {
-  //         type: 'Chips',
-  //         food: 'Tortilla Chips',
-  //         numCarbs: 38,
-  //         numProtein: 4,
-  //         fat: 14,
-  //         kCals: 294,
-  //         servingNum: 22,
-  //         serving: 'chips',
-  //         exchanges: 2
-  //       }
-  //     ],
-  //     proteins: [
-  //       {
-  //         type: 'No Legs',
-  //         food: 'Liquid Egg Whites',
-  //         numCarbs: 0,
-  //         numProtein: 15,
-  //         fat: 0,
-  //         kCals: 100,
-  //         servingNum: 3,
-  //         serving: 'tbsps',
-  //         exchanges: 1
-  //       },
-  //       {
-  //         type: 'No Legs',
-  //         food: 'Salmon',
-  //         numCarbs: 0,
-  //         numProtein: 7,
-  //         fat: 3,
-  //         kCals: 55,
-  //         servingNum: 1,
-  //         serving: 'ozs',
-  //         exchanges: 1
-  //       },
-  //       {
-  //         type: 'No Legs',
-  //         food: 'Tuna (Fresh or Water Packed)',
-  //         numCarbs: 0,
-  //         numProtein: 7,
-  //         fat: 1,
-  //         kCals: 37,
-  //         servingNum: 1,
-  //         serving: 'ozs',
-  //         exchanges: 1
-  //       },
-  //       {
-  //         type: 'Two Legs',
-  //         food: 'Chicken Breast',
-  //         numCarbs: 0,
-  //         numProtein: 7,
-  //         fat: 1,
-  //         kCals: 37,
-  //         servingNum: 1,
-  //         serving: 'ozs',
-  //         exchanges: 1
-  //       },
-  //       {
-  //         type: 'Four Legs',
-  //         food: 'Sirloin',
-  //         numCarbs: 0,
-  //         numProtein: 7,
-  //         fat: 3,
-  //         kCals: 55,
-  //         servingNum: 1,
-  //         serving: 'ozs',
-  //         exchanges: 1
-  //       }
-  //     ],
-  //     fruit: [
-  //       {
-  //         type: 'Fresh',
-  //         food: 'Apple, Raw (3 inch diameter)',
-  //         numCarbs: 25,
-  //         numProtein: 0.5,
-  //         fat: 0.3,
-  //         kCals: 45,
-  //         servingNum: 1,
-  //         serving: 'apple',
-  //         exchanges: 2
-  //       },
-  //       {
-  //         type: 'Frozen',
-  //         food: 'Blueberries (Frozen)',
-  //         numCarbs: 17,
-  //         numProtein: 1,
-  //         fat: 0,
-  //         kCals: 72,
-  //         servingNum: 1,
-  //         serving: 'cups',
-  //         exchanges: 1
-  //       },
-  //       {
-  //         type: 'Dried',
-  //         food: 'Prunes',
-  //         numCarbs: 15,
-  //         numProtein: 0.2,
-  //         fat: 0,
-  //         kCals: 24.8,
-  //         servingNum: 1,
-  //         serving: 'prunes',
-  //         exchanges: 1
-  //       }
-  //     ],
-  //     fat: [
-  //       {
-  //         type: 'Nuts',
-  //         food: 'Almonds',
-  //         numCarbs: 2.25,
-  //         numProtein: 2.1,
-  //         fat: 5.25,
-  //         kCals: 64.65,
-  //         servingNum: 9,
-  //         serving: 'almonds',
-  //         exchanges: 1
-  //       },
-  //       {
-  //         type: 'Monounsaturated Fats',
-  //         food: 'Peanut Butter',
-  //         numCarbs: 0,
-  //         numProtein: 3,
-  //         fat: 5,
-  //         kCals: 61,
-  //         servingNum: 2,
-  //         serving: 'tsps',
-  //         exchanges: 1
-  //       },
-  //       {
-  //         type: 'Polyunsaturated Fats',
-  //         food: 'Mayonnaise (Regular)',
-  //         numCarbs: 0,
-  //         numProtein: 0,
-  //         fat: 5,
-  //         kCals: 45,
-  //         servingNum: 0.5,
-  //         serving: 'Tbsps',
-  //         exchanges: 1
-  //       }
-  //     ]
-  //   }
-  // ];
+  mealData: MealData[] = [
+    {
+      mealType: 'Breakfast',
+      mealTime: { hours: 6, minutes: 30 },
+      carbs: [
+        {
+          type: 'Breads',
+          food: 'Bread (Whole wheat, Rye)',
+          numCarbs: 12,
+          numProtein: 3,
+          fat: 1,
+          kCals: 81,
+          servingNum: 1,
+          serving: 'slice',
+          exchanges: 1
+        },
+        {
+          type: 'Breads',
+          food: 'Udi\'s Multigrain Bread',
+          numCarbs: 12,
+          numProtein: 1,
+          fat: 2.25,
+          kCals: 70,
+          servingNum: 1,
+          serving: 'slice',
+          exchanges: 1
+        },
+        {
+          type: 'Cereals',
+          food: 'Oatmeal, Dry (Uncooked)',
+          numCarbs: 27,
+          numProtein: 4.5,
+          fat: 2.5,
+          kCals: 148.5,
+          servingNum: 0.5,
+          serving: 'cups',
+          exchanges: 2
+        },
+        {
+          type: 'Chips',
+          food: 'Tortilla Chips',
+          numCarbs: 38,
+          numProtein: 4,
+          fat: 14,
+          kCals: 294,
+          servingNum: 22,
+          serving: 'chips',
+          exchanges: 2
+        }
+      ],
+      proteins: [
+        {
+          type: 'No Legs',
+          food: 'Liquid Egg Whites',
+          numCarbs: 0,
+          numProtein: 15,
+          fat: 0,
+          kCals: 100,
+          servingNum: 3,
+          serving: 'tbsps',
+          exchanges: 1
+        },
+        {
+          type: 'No Legs',
+          food: 'Salmon',
+          numCarbs: 0,
+          numProtein: 7,
+          fat: 3,
+          kCals: 55,
+          servingNum: 1,
+          serving: 'ozs',
+          exchanges: 1
+        },
+        {
+          type: 'No Legs',
+          food: 'Tuna (Fresh or Water Packed)',
+          numCarbs: 0,
+          numProtein: 7,
+          fat: 1,
+          kCals: 37,
+          servingNum: 1,
+          serving: 'ozs',
+          exchanges: 1
+        },
+        {
+          type: 'Two Legs',
+          food: 'Chicken Breast',
+          numCarbs: 0,
+          numProtein: 7,
+          fat: 1,
+          kCals: 37,
+          servingNum: 1,
+          serving: 'ozs',
+          exchanges: 1
+        },
+        {
+          type: 'Four Legs',
+          food: 'Sirloin',
+          numCarbs: 0,
+          numProtein: 7,
+          fat: 3,
+          kCals: 55,
+          servingNum: 1,
+          serving: 'ozs',
+          exchanges: 1
+        }
+      ],
+      fruit: [
+        {
+          type: 'Fresh',
+          food: 'Apple, Raw (3 inch diameter)',
+          numCarbs: 25,
+          numProtein: 0.5,
+          fat: 0.3,
+          kCals: 45,
+          servingNum: 1,
+          serving: 'apple',
+          exchanges: 2
+        },
+        {
+          type: 'Frozen',
+          food: 'Blueberries (Frozen)',
+          numCarbs: 17,
+          numProtein: 1,
+          fat: 0,
+          kCals: 72,
+          servingNum: 1,
+          serving: 'cups',
+          exchanges: 1
+        },
+        {
+          type: 'Dried',
+          food: 'Prunes',
+          numCarbs: 15,
+          numProtein: 0.2,
+          fat: 0,
+          kCals: 24.8,
+          servingNum: 1,
+          serving: 'prunes',
+          exchanges: 1
+        }
+      ],
+      fat: [
+        {
+          type: 'Nuts',
+          food: 'Almonds',
+          numCarbs: 2.25,
+          numProtein: 2.1,
+          fat: 5.25,
+          kCals: 64.65,
+          servingNum: 9,
+          serving: 'almonds',
+          exchanges: 1
+        },
+        {
+          type: 'Monounsaturated Fats',
+          food: 'Peanut Butter',
+          numCarbs: 0,
+          numProtein: 3,
+          fat: 5,
+          kCals: 61,
+          servingNum: 2,
+          serving: 'tsps',
+          exchanges: 1
+        },
+        {
+          type: 'Polyunsaturated Fats',
+          food: 'Mayonnaise (Regular)',
+          numCarbs: 0,
+          numProtein: 0,
+          fat: 5,
+          kCals: 45,
+          servingNum: 0.5,
+          serving: 'Tbsps',
+          exchanges: 1
+        }
+      ]
+    }
+  ];
   carbs: CarbOptions[] = [
     {
       type: 'Breads',

@@ -2,10 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Food } from 'src/app/food/food.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FoodService } from 'src/app/food/food.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Subscription } from 'rxjs';
-import { ParamMap } from '@angular/router';
 
 @Component({
   templateUrl: './food-create.component.html',
@@ -64,51 +63,54 @@ export class FoodCreateComponent implements OnInit, OnDestroy {
         validators: [Validators.required]
       })
     });
-    // this.route.paramMap.subscribe((paramMap: ParamMap) => {
-    //   if (paramMap.has('foodId')) {
-    //     this.mode = 'edit';
-    //     this.foodId = paramMap.get('foodId');
-    //     this.isLoading = true;
-    //     this.foodService.getFood(this.foodId).subscribe(foodData => {
-    //       this.isLoading = false;
-    //       this.food = {
-    //         id: foodData._id,
-    //         category: foodData.category,
-    //         name: foodData.name,
-    //         carbs: foodData.carbs,
-    //         protein: foodData.protein,
-    //         fat: foodData.fat,
-    //         kCals: foodData.kCals,
-    //         serving: foodData.serving,
-    //         measurement: foodData.measurement,
-    //         exchanges: foodData.exchanges
-    //       };
-    //       this.foodForm.setValue({
-    //         // category: foodData.category,
-    //         // name: foodData.name,
-    //         // carbs: foodData.carbs,
-    //         // protein: foodData.protein,
-    //         // fat: foodData.fat,
-    //         // kCals: foodData.kCals,
-    //         // serving: foodData.serving,
-    //         // measurement: foodData.measurement,
-    //         // exchanges: foodData.exchanges
-    //         category: this.food.category,
-    //         name: this.food.name,
-    //         carbs: this.food.carbs,
-    //         protein: this.food.protein,
-    //         fat: this.food.fat,
-    //         kCals: this.food.kCals,
-    //         serving: this.food.serving,
-    //         measurement: this.food.measurement,
-    //         exchanges: this.food.exchanges
-    //       });
-    //     });
-    //   } else {
-    //     this.mode = 'create';
-    //     this.foodId = null;
-    //   }
-    // });
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if (paramMap.has('foodId')) {
+        this.mode = 'edit';
+        this.foodId = paramMap.get('foodId');
+        this.isLoading = true;
+        this.foodService.getFood(this.foodId).subscribe(foodData => {
+          this.isLoading = false;
+          this.food = {
+            id: foodData._id,
+            category: foodData.category,
+            type: foodData.type,
+            name: foodData.name,
+            carbs: foodData.carbs,
+            protein: foodData.protein,
+            fat: foodData.fat,
+            kCals: foodData.kCals,
+            serving: foodData.serving,
+            measurement: foodData.measurement,
+            exchanges: foodData.exchanges
+          };
+          this.foodForm.setValue({
+            // category: foodData.category,
+            // name: foodData.name,
+            // carbs: foodData.carbs,
+            // protein: foodData.protein,
+            // fat: foodData.fat,
+            // kCals: foodData.kCals,
+            // serving: foodData.serving,
+            // measurement: foodData.measurement,
+            // exchanges: foodData.exchanges
+            category: this.food.category,
+            type: this.food.type,
+            name: this.food.name,
+            carbs: this.food.carbs,
+            protein: this.food.protein,
+            fat: this.food.fat,
+            kCals: this.food.kCals,
+            serving: this.food.serving,
+            measurement: this.food.measurement,
+            exchanges: this.food.exchanges
+          });
+        });
+      } else {
+        this.mode = 'create';
+        this.foodId = null;
+      }
+    });
+
     }
 
     onSaveFood() {
@@ -130,7 +132,7 @@ export class FoodCreateComponent implements OnInit, OnDestroy {
           this.foodForm.value.measurement,
           this.foodForm.value.exchanges
         );
-        console.log('onSaveFood() hit ' + this.foodForm.value.category);
+        console.log('onSaveFood() hit ' + this.foodForm.value.carbs);
       }  else {
         this.foodService.updateFood(
           this.foodId,

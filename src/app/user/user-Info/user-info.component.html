@@ -1,13 +1,13 @@
-<h2>Welcome, {{ user.firstName }}!</h2>
+<h2 *ngIf="!isLoading">Welcome, {{ user.firstName }}!</h2>
+<mat-spinner color="accent" *ngIf="isLoading"> </mat-spinner>
+<mat-card *ngIf="!isLoading">
 
-<mat-card>
-  <mat-spinner color="accent" *ngIf="isLoading"> </mat-spinner>
-  <div>Name: {{ user.firstName }} {{ user.lastName }}</div>
-  <div>Email: {{ user.email }}</div>
-  <div>Phone: {{ user.phone }}</div>
+  <div *ngIf="!isLoading">Name: {{ user.firstName }} {{ user.lastName }}</div>
+  <div *ngIf="!isLoading">Email: {{ user.email }}</div>
+  <div *ngIf="!isLoading">Phone: {{ user.phone }}</div>
   <!-- <mat-action-row *ngIf="userIsAuthenticated && userId === user.id"> -->
       <mat-action-row *ngIf="userIsAuthenticated">
-      <a mat-raised-button color ="primary" [routerLink]="['/edit', user.id]">EDIT</a>
+      <a *ngIf="!isLoading" mat-raised-button color ="primary" [routerLink]="['/edit', user.id]">EDIT</a>
     </mat-action-row>
 </mat-card>
 <!-- <mat-card>

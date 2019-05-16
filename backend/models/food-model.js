@@ -3,7 +3,8 @@ const uniqueValidator = require('mongoose-unique-validator');
 
 const foodSchema = mongoose.Schema({
   // category: { type: String, required: true },
-  // name: { type: String, required: true },
+  // type: { type: String, required: true },
+  // name: { type: String, required: true, unique:true },
   // carbs: { type: String, required: true },
   // protein: { type: String, required: true },
   // fat: { type: String, required: true },

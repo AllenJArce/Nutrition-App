@@ -1,4 +1,4 @@
-<h1>THIS IS FOOD </h1>
+<h1>THIS IS FOOD CREATE!</h1>
 <mat-card>
   <mat-spinner *ngIf="isLoading"> </mat-spinner>
   <form [formGroup]="foodForm" (submit)="onSaveFood()" *ngIf="!isLoading">
@@ -16,13 +16,13 @@
       >
     </mat-form-field>
     <div>
-        <mat-form-field>
-          <input matInput type="text" formControlName="type" placeholder="Type" />
-          <mat-error *ngIf="foodForm.get('type').invalid"
-            >Please enter a valid food type.</mat-error
-          >
-        </mat-form-field>
-      </div>
+      <mat-form-field>
+        <input matInput type="text" formControlName="type" placeholder="Type" />
+        <mat-error *ngIf="foodForm.get('type').invalid"
+          >Please enter a valid food type.</mat-error
+        >
+      </mat-form-field>
+    </div>
     <div>
       <mat-form-field>
         <input matInput type="text" formControlName="name" placeholder="Name" />
@@ -117,9 +117,11 @@
           >Please enter a valid number of exchanges.</mat-error
         >
       </mat-form-field>
-      <button mat-raised-button
-      color="accent"
-      type="submit">Save Post</button>
+      <div>
+        <button mat-raised-button color="accent" type="submit">
+          Save Food
+        </button>
+      </div>
     </div>
   </form>
 </mat-card>

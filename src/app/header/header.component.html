@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <span>T-Nation Nutrition</span>
+  <span><a routerLink="/">T-Nation Nutrition</a></span>
   <span class="spacer"></span>
   <ul>
     <li *ngIf="userIsAuthenticated">
@@ -8,10 +8,10 @@
       >
     </li>
     <li *ngIf="userIsAuthenticated">
-        <a mat-button routerLink="/food-list" routerLinkActive="mat-accent"
-          >Food</a
-        >
-      </li>
+      <a mat-button routerLink="/food-list" routerLinkActive="mat-accent"
+        >Food</a
+      >
+    </li>
     <li *ngIf="userIsAuthenticated">
       <a mat-button routerLink="/meal-plan" routerLinkActive="mat-accent"
         >Meal Plan</a

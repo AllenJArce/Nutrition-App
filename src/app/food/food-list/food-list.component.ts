@@ -5,10 +5,18 @@ import { Food } from 'src/app/food/food.model';
 import { AuthService } from 'src/app/auth/auth.service';
 import { FoodService } from 'src/app/food/food.service';
 import { MatTableDataSource } from '@angular/material';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   templateUrl: './food-list.component.html',
-  styleUrls: ['./food-list.component.css']
+  styleUrls: ['./food-list.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class FoodListComponent implements OnInit {
   foods: Food[] = [];
@@ -20,18 +28,45 @@ export class FoodListComponent implements OnInit {
   private authStatusSub: Subscription;
   // dataSource: Food[];
   dataSource = new MatTableDataSource(this.foods);
+  expandedFood: Food | null;
+  // displayedColumns: string[] = [
+  //   'category',
+  //   'type',
+  //   'name',
+  //   'carbs',
+  //   'protein',
+  //   'fat',
+  //   'kCals',
+  //   'serving',
+  //   'measurement',
+  //   'exchanges'
+  // ];
+
   displayedColumns: string[] = [
     'category',
     'type',
     'name',
-    'carbs',
-    'protein',
-    'fat',
-    'kCals',
-    'serving',
-    'measurement',
-    'exchanges'
+    // 'carbs',
+    // 'protein',
+    // 'fat',
+    // 'kCals',
+    // 'serving',
+    // 'measurement',
+    // 'exchanges'
   ];
+
+  // collapsedColumns: string[] = [
+  //   'category',
+  //   'type',
+  //   'name',
+  //   'carbs',
+  //   'protein',
+  //   'Fat',
+  //   'KCals',
+  //   'Serving',
+  //   'Measurement',
+  //   'Exchanges'
+  // ];
 
   constructor(
     public foodService: FoodService,
@@ -58,6 +93,16 @@ export class FoodListComponent implements OnInit {
       });
 
     // this.dataSource = this.foods;
+  }
+
+  onDelete(foodId: string) {
+    this.isLoading = true;
+    this.foodService.deleteFood(foodId).subscribe(() => {
+      this.foodService.getFoods();
+    }, () => {
+      this.isLoading = false;
+      console.log('foodId is ' + foodId);
+    });
   }
 
 

@@ -2,6 +2,7 @@ const Food = require("../models/food-model");
 
 exports.createFood = (req, res, next) => {
   // const url = req.protocol + "://" + req.get("host");
+  console.log("createFood backend hit" + req.body.name + req.body.category);
   const food = new Food({
     category: req.body.category,
     type: req.body.type,
@@ -22,15 +23,6 @@ exports.createFood = (req, res, next) => {
         food: {
           ...createdFood,
           id: createdFood._id
-          // category: createdFood.category,
-          // name: createdFood.name,
-          // carbs: createdFood.carbs,
-          // protein: createdFood.protein,
-          // fat: createdFood.fat,
-          // kCals: createdFood.kCals,
-          // serving: createdFood.serving,
-          // measurement: createdFood.measurement,
-          // exchanges: createdFood.exchanges
         }
       });
     })
@@ -93,6 +85,8 @@ exports.getFoods = (req, res, next) => {
     });
 };
 
+
+
 exports.getFood = (req, res, next) => {
   Food.findById(req.params.id)
     .then(food => {
@@ -109,6 +103,23 @@ exports.getFood = (req, res, next) => {
     });
 };
 
+// exports.getFood = (req, res, next) => {
+//   Food.find(req.params.name)
+//     .then(food => {
+//       if (food) {
+//         res.status(200).json(food);
+//       } else {
+//         res.status(404).json({ message: "Food not found!" });
+//       }
+//     })
+//     .catch(error => {
+//       res.status(500).json({
+//         message: "Fetching food failed!"
+//       });
+//     });
+// };
+
+
 exports.deleteFood = (req, res, next) => {
   Food.deleteOne({ _id: req.params.id })
     .then(result => {
@@ -121,7 +132,7 @@ exports.deleteFood = (req, res, next) => {
     })
     .catch(error => {
       res.status(500).json({
-        message: "Fetching food failed!"
+        message: "Deleting food failed!"
       });
     });
 };

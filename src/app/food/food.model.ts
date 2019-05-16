@@ -1,5 +1,5 @@
 export interface Food {
-  // id: string;
+  id: string;
   category: string;
   type: string;
   name: string;
@@ -15,6 +15,7 @@ export interface Food {
 // export interface Food {
 //   id: string;
 //   category: string;
+//   type: string;
 //   name: string;
 //   carbs: string;
 //   protein: string;
