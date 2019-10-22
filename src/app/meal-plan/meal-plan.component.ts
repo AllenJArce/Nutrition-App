@@ -43,9 +43,12 @@ export class MealPlanComponent implements OnInit {
   proteins: Food[];
   carbList: Food[];
   proteinList: Food[];
+  suppProteinList: Food[];
   fruitList: Food[];
+  vegetableList: Food[];
   fatList: Food[];
   isLoading = false;
+  selectedValue: string;
   private foodSub: Subscription;
   private authStatusSub: Subscription;
   userIsAuthenticated = false;
@@ -53,6 +56,61 @@ export class MealPlanComponent implements OnInit {
   proteinControl = new FormControl();
   fruitControl = new FormControl();
   fatControl = new FormControl();
+  selectedCarb: string;
+  selectedCarb2: string;
+  selectedCarb3: string;
+  selectedCarb4: string;
+  selectedCarb5: string;
+  selectedProtein: string;
+  selectedProtein2: string;
+  selectedProtein3: string;
+  selectedSuppProtein: string;
+  selectedSuppProtein2: string;
+  selectedSuppProtein3: string;
+  selectedFruit: string;
+  selectedVegetable: string;
+  selectedVegetable2: string;
+  selectedFat: string;
+  selectedFat2: string;
+  selectedFat3: string;
+  selectedFat4: string;
+  selectedFat5: string;
+  selectedFat6: string;
+
+  defaultChosen: Food = {
+    id: '',
+    category: '',
+    type: '',
+    name: '',
+    carbs: 0,
+    protein: 0,
+    fat: 0,
+    kCals: 0,
+    serving: 0,
+    measurement: '',
+    exchanges: 0
+  };
+
+  carbChosen: Food = this.defaultChosen;
+  carbChosen2: Food = this.defaultChosen;
+  carbChosen3: Food = this.defaultChosen;
+  carbChosen4: Food = this.defaultChosen;
+  carbChosen5: Food = this.defaultChosen;
+  proteinChosen: Food = this.defaultChosen;
+  proteinChosen2: Food = this.defaultChosen;
+  proteinChosen3: Food = this.defaultChosen;
+  fruitChosen: Food = this.defaultChosen;
+  vegetableChosen: Food = this.defaultChosen;
+  vegetableChosen2: Food = this.defaultChosen;
+  fatChosen: Food = this.defaultChosen;
+  fatChosen2: Food = this.defaultChosen;
+  fatChosen3: Food = this.defaultChosen;
+  fatChosen4: Food = this.defaultChosen;
+  fatChosen5: Food = this.defaultChosen;
+  fatChosen6: Food = this.defaultChosen;
+  suppProteinChosen: Food = this.defaultChosen;
+  suppProteinChosen2: Food = this.defaultChosen;
+  suppProteinChosen3: Food = this.defaultChosen;
 
   displayedColumns: string[] = [
     'exchanges',
@@ -65,59 +123,16 @@ export class MealPlanComponent implements OnInit {
     carbsGroup: ''
   });
 
-  mealOne: FormGroup = this.fb.group({
-    carbGroup: [''],
-    proteinGroup: [''],
-    fruitGroup: [''],
-    fatGroup: ['']
-  });
-
-
-  proteinGroups: ProteinsGroup[] = [
-    {
-      proteinType: 'No Legs',
-      proteinFoodNames: [
-        'Egg Whites',
-        'Salmon',
-        'Tuna (Fresh or Water Packed)',
-        'Cod (Fresh or Frozen)',
-        'Halibut (Fresh or Frozen)'
-      ]
-    },
-    {
-      proteinType: 'Two Legs',
-      proteinFoodNames: [
-        'Chicken Breast',
-        'Turkey Breast',
-        'Cornish Hen',
-        'Duck (No Skin)'
-      ]
-    },
-    {
-      proteinType: 'Four Legs',
-      proteinFoodNames: ['Lean Beef', 'Bison', 'Lamb', 'Venison']
-    }
-  ];
-
-  fruitGroups: FruitsGroup[] = [
-    {
-      fruitType: 'Fresh',
-      fruitFoodNames: ['Strawberries', 'Blueberries', 'Mango']
-    },
-    {
-      fruitType: 'Frozen',
-      fruitFoodNames: ['Blueberries', 'Pineapple', 'Raspberries']
-    },
-    {
-      fruitType: 'Dried',
-      fruitFoodNames: ['Cherries', 'Mango', 'Apples']
-    }
-  ];
+  // mealOne: FormGroup = this.fb.group({
+  //   carbGroup: [''],
+  //   proteinGroup: [''],
+  //   fruitGroup: [''],
+  //   fatGroup: ['']
+  // });
 
   carbGroupOptions: Observable<Food[]>;
-  proteinGroupOptions: Observable<ProteinsGroup[]>;
-  fruitGroupOptions: Observable<FruitsGroup[]>;
   dataSource: Food[];
+  mealOne: Food[];
   constructor(
     private fb: FormBuilder,
     public foodService: FoodService,
@@ -134,17 +149,28 @@ export class MealPlanComponent implements OnInit {
         this.foods = foodsData.foods;
         this.carbList = this.filterCarbs(this.foods);
         this.proteinList = this.filterProtein(this.foods);
+        this.suppProteinList = this.filterSuppProtein(this.foods);
         this.fruitList = this.filterFruit(this.foods);
+        this.vegetableList = this.filterVegetable(this.foods);
         this.fatList = this.filterFat(this.foods);
-        this.dataSource = this.foods;
+        console.log('current selection: ' + this.selectedCarb);
+        console.log('thiis is the food: ' + this.carbChosen.name + this.carbChosen.carbs);
+        // this.carbs = this.getFoodInfo(this.selectedCarb);
+        // this.proteinList = this.filterProtein(this.foods);
+        // this.fruitList = this.filterFruit(this.foods);
+        // this.fatList = this.filterFat(this.foods);
+        // this.mealOne.push(this.carbChosen);
+        // this.dataSource = this.mealOne;
+        // console.log('dataSource: ' + this.dataSource);
       });
     this.userIsAuthenticated = this.authService.getIsAuth();
 
-    this.carbGroupOptions = this.mealOne.get('carbGroup')!.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filterGroup(value))
-    );
-    console.log('carbGroupOptions: ' + this.carbGroupOptions );
+    // this.carbGroupOptions = this.mealOne.get('carbGroup')!.valueChanges.pipe(
+    //   startWith(''),
+    //   map(value => this._filterGroup(value))
+    // );
+    // console.log('carbGroupOptions: ' + this.carbGroupOptions );
+
 
     // this.proteinGroupOptions = this.mealOne
     //   .get('proteinGroup')!
@@ -158,7 +184,6 @@ export class MealPlanComponent implements OnInit {
     //   map(value => this._filterFruitGroup(value))
     // );
   }
-
   private filterCarbs(foods: Food[]): Food[] {
     this.carbList = foods.filter(carb => carb.category === 'Carbs');
     return this.carbList;
@@ -169,15 +194,26 @@ export class MealPlanComponent implements OnInit {
     return this.proteinList;
   }
 
+  private filterSuppProtein(foods: Food[]): Food[] {
+    this.suppProteinList = foods.filter(suppProtein => suppProtein.category === 'Protein Supplement');
+    return this.suppProteinList;
+  }
+
   private filterFruit(foods: Food[]): Food[] {
     this.fruitList = foods.filter(fruit => fruit.category === 'Fruit');
     return this.fruitList;
+  }
+
+  private filterVegetable(foods: Food[]): Food[] {
+    this.vegetableList = foods.filter(vegetable => vegetable.category === 'Vegetable');
+    return this.vegetableList;
   }
 
   private filterFat(foods: Food[]): Food[] {
     this.fatList = foods.filter(fat => fat.category === 'Fat');
     return this.fatList;
   }
+
 
   private _filterGroup(value: string): Food[] {
     if (value) {
@@ -203,29 +239,83 @@ export class MealPlanComponent implements OnInit {
     return this.carbs;
   }
 
-  // private _filterProteinGroup(value: string): ProteinsGroup[] {
-  //   if (value) {
-  //     return this.proteinGroups
-  //       .map(proteinGroup => ({
-  //         proteinType: proteinGroup.proteinType,
-  //         proteinFoodNames: _filter(proteinGroup.proteinFoodNames, value)
-  //       }))
-  //       .filter(proteinGroup => proteinGroup.proteinFoodNames.length > 0);
-  //   }
+  private carbSelected(foodList: Food[], selectedFood: string) {
+    this.carbChosen = foodList.find(food => food.name === selectedFood);
+  }
 
-  //   return this.proteinGroups;
-  // }
+  private carbSelected2(foodList: Food[], selectedFood: string) {
+    this.carbChosen2 = foodList.find(food => food.name === selectedFood);
+  }
 
-  // private _filterFruitGroup(value: string): FruitsGroup[] {
-  //   if (value) {
-  //     return this.fruitGroups
-  //       .map(fruitGroup => ({
-  //         fruitType: fruitGroup.fruitType,
-  //         fruitFoodNames: _filter(fruitGroup.fruitFoodNames, value)
-  //       }))
-  //       .filter(fruitGroup => fruitGroup.fruitFoodNames.length > 0);
-  //   }
+  private carbSelected3(foodList: Food[], selectedFood: string) {
+    this.carbChosen3 = foodList.find(food => food.name === selectedFood);
+  }
 
-  //   return this.fruitGroups;
-  // }
+  private carbSelected4(foodList: Food[], selectedFood: string) {
+    this.carbChosen4 = foodList.find(food => food.name === selectedFood);
+  }
+
+  private carbSelected5(foodList: Food[], selectedFood: string) {
+    this.carbChosen5 = foodList.find(food => food.name === selectedFood);
+  }
+
+  private proteinSelected(foodList: Food[], selectedFood: string) {
+    this.proteinChosen = foodList.find(food => food.name === selectedFood);
+  }
+
+  private proteinSelected2(foodList: Food[], selectedFood: string) {
+    this.proteinChosen2 = foodList.find(food => food.name === selectedFood);
+  }
+
+  private proteinSelected3(foodList: Food[], selectedFood: string) {
+    this.proteinChosen3 = foodList.find(food => food.name === selectedFood);
+  }
+
+  private suppProteinSelected(foodList: Food[], selectedFood: string) {
+    this.suppProteinChosen = foodList.find(food => food.name === selectedFood);
+  }
+
+  private suppProteinSelected2(foodList: Food[], selectedFood: string) {
+    this.suppProteinChosen2 = foodList.find(food => food.name === selectedFood);
+  }
+
+  private suppProteinSelected3(foodList: Food[], selectedFood: string) {
+    this.suppProteinChosen3 = foodList.find(food => food.name === selectedFood);
+  }
+
+  private fruitSelected(foodList: Food[], selectedFood: string) {
+    this.fruitChosen = foodList.find(food => food.name === selectedFood);
+  }
+
+  private vegetableSelected(foodList: Food[], selectedFood: string) {
+    this.vegetableChosen = foodList.find(food => food.name === selectedFood);
+  }
+
+  private vegetableSelected2(foodList: Food[], selectedFood: string) {
+    this.vegetableChosen2 = foodList.find(food => food.name === selectedFood);
+  }
+
+  private fatSelected(foodList: Food[], selectedFood: string) {
+    this.fatChosen = foodList.find(food => food.name === selectedFood);
+  }
+
+  private fatSelected2(foodList: Food[], selectedFood: string) {
+    this.fatChosen2 = foodList.find(food => food.name === selectedFood);
+  }
+
+  private fatSelected3(foodList: Food[], selectedFood: string) {
+    this.fatChosen3 = foodList.find(food => food.name === selectedFood);
+  }
+
+  private fatSelected4(foodList: Food[], selectedFood: string) {
+    this.fatChosen4 = foodList.find(food => food.name === selectedFood);
+  }
+
+  private fatSelected5(foodList: Food[], selectedFood: string) {
+    this.fatChosen5 = foodList.find(food => food.name === selectedFood);
+  }
+
+  private fatSelected6(foodList: Food[], selectedFood: string) {
+    this.fatChosen6 = foodList.find(food => food.name === selectedFood);
+  }
 }

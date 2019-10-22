@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const userRoutes = require("./routes/user-route");
 const feedbackRoutes = require("./routes/feedback-route");
 const foodRoutes = require("./routes/food-route");
+const bodyFatRoutes = require("./routes/body-fat-route");
 // const userRoutes = require("./routes/user");
 
 const app = express();
@@ -42,6 +43,7 @@ app.use((req, res, next) => {
 app.use("/api/user", userRoutes);
 // app.use("/api/feedback", feedbackRoutes);
 app.use("/api/food", foodRoutes);
+app.use("/api/body-fat", bodyFatRoutes);
 
 // app.use((req, res, next) => {
 //   res.sendFile(path.join(__dirname, "angular", "index.html"));

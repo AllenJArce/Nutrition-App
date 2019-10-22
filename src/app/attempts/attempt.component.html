@@ -1,211 +1,1042 @@
-<!-- TODO: can put [formGroup] in mat-form-field -->
-
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+  crossorigin="anonymous"
+/>
 <mat-card>
+  <!-- <table mat-table [dataSource]="dataSource"> -->
+  <form>
+    <!-- <mat-form-field class="example-full-width"> -->
+    <!-- <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="mealOne">
+          <th mat-header-cell *matHeaderCellDef>Meal 1</th>
+          <td mat-cell *matCellDef="let meal">
+<ng-container matColumnDef="exchanges">
+    <th mat-header-cell *matHeaderCellDef>Number of Exchanges</th>
+    <td mat-cell *matCellDef="let food">{{ food.exchanges }}</td>
 
+  </ng-container>
 
-  <table mat-table [dataSource]="dataSource">
-    <ng-container matColumnDef="mealOne">
-      <th mat-header-cell *matHeaderCellDef>Meal 1</th>
-      <td mat-cell *matCellDef="let element">
-        <form>
-          <mat-form-field [formGroup]="mealOne">
-            <input
-              type="text"
-              matInput
-              placeholder="Choose a carb"
-              formControlName="carbGroup"
-              required
-              [matAutocomplete]="autoGroup"
-            />
-            <mat-autocomplete #autoGroup="matAutocomplete">
-              <mat-optgroup
-                *ngFor="let group of (carbGroupOptions | async)"
-                [label]="group.type"
-              >
-                <mat-option
-                  *ngFor="let foodNames of group.food"
-                  [value]="food"
-                >
-                  {{ food }}
-                </mat-option>
-              </mat-optgroup>
-            </mat-autocomplete>
-          </mat-form-field>
+<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table> -->
 
-          <!-- Meal One: Protein -->
+    <!-- <table mat-table [dataSource]="dataSource"> -->
+    <!-- <ng-container matColumnDef="mealOne">
+    <th mat-header-cell *matHeaderCellDef>Meal 1</th>
+    <td mat-cell *matCellDef="let meal"> -->
 
-          <div>
-            <mat-form-field [formGroup]="mealOne">
-              <input
-                type="text"
-                matInput
-                placeholder="Choose a protein"
-                formControlName="proteinGroup"
-                required
-                [matAutocomplete]="autoProteinGroup"
-              />
-              <mat-autocomplete #autoProteinGroup="matAutocomplete">
-                <mat-optgroup
-                  *ngFor="let group of (proteinGroupOptions | async)"
-                  [label]="group.proteinType"
-                >
-                  <mat-option
-                    *ngFor="let proteinFoodNames of group.proteinFoodNames"
-                    [value]="proteinFoodNames"
-                  >
-                    {{ proteinFoodNames }}
-                  </mat-option>
-                </mat-optgroup>
-              </mat-autocomplete>
-            </mat-form-field>
-          </div>
+    <!-- <ng-container matColumnDef="exchanges">
+            <th mat-header-cell *matHeaderCellDef>Number of Exchanges</th>
+            <td mat-cell *matCellDef="let carbs">{{ carbChosen.exchanges }}</td>
+          </ng-container>
 
-          <!-- Meal One: Fruits -->
+        <ng-container matColumnDef="carbs">
+          <th mat-header-cell *matHeaderCellDef>Number of Carbs</th>
+          <td mat-cell *matCellDef="let carbs">{{ carbChosen.carbs }}</td>
+        </ng-container> -->
 
-          <div>
-            <mat-form-field [formGroup]="mealOne">
-              <input
-                type="text"
-                matInput
-                placeholder="Choose a fruit"
-                formControlName="fruitGroup"
-                required
-                [matAutocomplete]="autoFruitGroup"
-              />
-              <mat-autocomplete #autoFrutiGroup="matAutocomplete">
-                <mat-optgroup
-                  *ngFor="let group of (fruitGroupOptions | async)"
-                  [label]="group.fruitType"
-                >
-                  <mat-option
-                    *ngFor="let fruitFoodNames of group.fruitFoodNames"
-                    [value]="fruitFoodNames"
-                  >
-                    {{ fruitFoodNames }}
-                  </mat-option>
-                </mat-optgroup>
-              </mat-autocomplete>
-            </mat-form-field>
-          </div>
-        </form>
-      </td>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="exchanges">
-      <th mat-header-cell *matHeaderCellDef>Number of Exchanges</th>
-      <td mat-cell *matCellDef="let food">{{ food.exchanges }}</td>
-      <td mat-cell *matCellDef="let food">{{ food.exchanges }}</td>
-      <td mat-cell *matCellDef="let food">{{ food.exchanges }}</td>
-      <td mat-cell *matCellDef="let food">{{ food.exchanges }}</td>
-    </ng-container>
-
-    <!-- Weight Column -->
-    <ng-container matColumnDef="carbs">
-      <th mat-header-cell *matHeaderCellDef>Carbs</th>
-      <td mat-cell *matCellDef="let food">{{ food.numMCarbs }}</td>
-    </ng-container>
-
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="protein">
-      <th mat-header-cell *matHeaderCellDef>Protein</th>
-      <td mat-cell *matCellDef="let food">{{ food.numProtein }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="fat">
-      <th mat-header-cell *matHeaderCellDef>Fat</th>
-      <td mat-cell *matCellDef="let food">{{ food.fat }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="kCals">
-      <th mat-header-cell *matHeaderCellDef>Kcals</th>
-      <td mat-cell *matCellDef="let food">{{ food.kCals }}</td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-</mat-card>
-
-<!-- <mat-card>
-  <table mat-table [dataSource]="dataSource">
-    <ng-container matColumnDef="carbs">
-      <th mat-header-cell *matHeaderCellDef>Carbs</th>
-      <td mat-cell *matCellDef="let meal of carbs"> {{ meal.carbs.type }}</td>
-        </ng-container>
-
-    <ng-container matColumnDef="protein">
-      <th mat-header-cell *matHeaderCellDef>Protein</th>
-      <td mat-cell *matCellDef="let meal">{{ meal.proteins.food }}</td>
-    </ng-container>
-
-
-    <ng-container matColumnDef="fruit">
-        <th mat-header-cell *matHeaderCellDef>Fruit</th>
-        <td mat-cell *matCellDef="let meal">{{ meal.fruit.food }}</td>
-      </ng-container>
-
-    <ng-container matColumnDef="fat">
-        <th mat-header-cell *matHeaderCellDef>Fat</th>
-        <td mat-cell *matCellDef="let meal">{{ meal.fat.food }}</td>
-      </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-</mat-card> -->
-
-<!-- Simple example, no filtering! -->
-
-<!-- <form >
-    <mat-form-field [formGroup] ="mealOne">
-      <input
-        type="text"
-        matInput
-        placeholder="Choose a carb"
-        formControlName="carbGroup"
-        required
-        [matAutocomplete]="autoGroup"
-      />
-      <mat-autocomplete #autoGroup="matAutocomplete">
-        <mat-optgroup
-          *ngFor="let group of carbGroups"
-          [label]="group.type"
-        >
-          <mat-option
-            *ngFor="let foodNames of group.foodNames"
-            [value]="foodNames"
-          >
-            {{ foodNames }}
-          </mat-option>
-        </mat-optgroup>
-      </mat-autocomplete>
-    </mat-form-field>
-
-
-    <div>
-      <mat-form-field [formGroup] ="mealOne">
-        <input
-          type="text"
-          matInput
-          placeholder="Choose a protein"
-          formControlName="proteinGroup"
-          required
-          [matAutocomplete]="autoProteinGroup"
-        />
-        <mat-autocomplete #autoProteinGroup="matAutocomplete">
-          <mat-optgroup
-            *ngFor="let group of proteinGroups"
-            [label]="group.proteinType"
-          >
-            <mat-option
-              *ngFor="let proteinFoodNames of group.proteinFoodNames"
-              [value]="proteinFoodNames"
+    <!-- Meal 1 -->
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Meal 1 - (Time) (Breakfast)</th>
+          <th>Serving</th>
+          <th>Exchanges</th>
+          <th>Carbs</th>
+          <th>Protein</th>
+          <th>Fat</th>
+          <th>KCals</th>
+        </tr>
+      </thead>
+      <!-- Carb Selection -->
+      <tr>
+        <td class="food-selection">
+          <mat-form-field class="food-selection">
+            <mat-label class="food-selection">Choose a Carb</mat-label>
+            <mat-select
+              (selectionChange)="carbSelected(carbList, selectedCarb)"
+              [(ngModel)]="selectedCarb"
+              name="carb"
+              class="food-selection"
             >
-              {{ proteinFoodNames }}
+              <mat-option
+                class="food-selection"
+                *ngFor="let carb of carbList"
+                [value]="carb.name"
+              >
+                {{ carb.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>{{ carbChosen.serving }} {{ carbChosen.measurement }}</td>
+        <td>{{ carbChosen.exchanges }} {{ carbChosen.type }}</td>
+        <td>{{ carbChosen.carbs }}</td>
+        <td>{{ carbChosen.protein }}</td>
+        <td>{{ carbChosen.fat }}</td>
+        <td>{{ carbChosen.kCals }}</td>
+      </tr>
+      <!-- Protein Selection -->
+      <tr color="primary" class="food-selection">
+        <td class="food-selection">
+          <mat-form-field class="food-selection">
+            <mat-label class="food-selection">Choose a Protein</mat-label>
+            <mat-select
+              (selectionChange)="proteinSelected(proteinList, selectedProtein)"
+              [(ngModel)]="selectedProtein"
+              name="protein"
+              class="food-selection"
+            >
+              <mat-option
+                class="food-selection"
+                *ngFor="let protein of proteinList"
+                [value]="protein.name"
+              >
+                {{ protein.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>{{ proteinChosen.serving }} {{ proteinChosen.measurement }}</td>
+        <td>{{ proteinChosen.exchanges }} {{ proteinChosen.type }}</td>
+        <td>{{ proteinChosen.carbs }}</td>
+        <td>{{ proteinChosen.protein }}</td>
+        <td>{{ proteinChosen.fat }}</td>
+        <td>{{ proteinChosen.kCals }}</td>
+      </tr>
+      <!-- Fruit Selection -->
+      <tr class="food-selection">
+        <td class="food-selection">
+          <mat-form-field class="food-selection">
+            <mat-label class="food-selection">Choose a Fruit</mat-label>
+            <mat-select
+              (selectionChange)="fruitSelected(fruitList, selectedFruit)"
+              [(ngModel)]="selectedFruit"
+              name="fruit"
+              class="food-selection"
+            >
+              <mat-option
+                class="food-selection"
+                *ngFor="let fruit of fruitList"
+                [value]="fruit.name"
+              >
+                {{ fruit.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>{{ fruitChosen.serving }} {{ fruitChosen.measurement }}</td>
+        <td>{{ fruitChosen.exchanges }} {{ fruitChosen.type }}</td>
+        <td>{{ fruitChosen.carbs }}</td>
+        <td>{{ fruitChosen.protein }}</td>
+        <td>{{ fruitChosen.fat }}</td>
+        <td>{{ fruitChosen.kCals }}</td>
+      </tr>
+
+      <!-- Fat Selection -->
+      <tr class="food-selection">
+        <td class="food-selection">
+          <mat-form-field class="food-selection">
+            <mat-label class="food-selection">Choose a Fat</mat-label>
+            <mat-select
+              (selectionChange)="fatSelected(fatList, selectedFat)"
+              [(ngModel)]="selectedFat"
+              name="fat"
+              class="food-selection"
+            >
+              <mat-option
+                class="food-selection"
+                *ngFor="let fat of fatList"
+                [value]="fat.name"
+              >
+                {{ fat.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>{{ fatChosen.serving }} {{ fatChosen.measurement }}</td>
+        <td>{{ fatChosen.exchanges }} {{ fatChosen.type }}</td>
+        <td>{{ fatChosen.carbs }}</td>
+        <td>{{ fatChosen.protein }}</td>
+        <td>{{ fatChosen.fat }}</td>
+        <td>{{ fatChosen.kCals }}</td>
+      </tr>
+      <tr class="table-primary">
+        <td>
+          Meal (number) (Meal Name) THIS ONE Totals:
+        </td>
+        <td></td>
+        <td>
+          {{
+            carbChosen.exchanges +
+              proteinChosen.exchanges +
+              fruitChosen.exchanges +
+              fatChosen.exchanges | number
+          }}
+        </td>
+        <td>
+          {{
+            carbChosen.carbs +
+              proteinChosen.carbs +
+              fruitChosen.carbs +
+              fatChosen.carbs | number
+          }}
+        </td>
+        <td>
+          {{
+            carbChosen.protein +
+              proteinChosen.protein +
+              fruitChosen.protein +
+              fatChosen.protein | number
+          }}
+        </td>
+        <td>
+          {{
+            carbChosen.fat + proteinChosen.fat + fruitChosen.fat + fatChosen.fat | number
+          }}
+        </td>
+        <td>
+          {{
+            carbChosen.kCals +
+              proteinChosen.kCals +
+              fruitChosen.kCals +
+              fatChosen.kCals | number
+          }}
+        </td>
+      </tr>
+      <!-- </mat-form-field> -->
+      <!-- <mat-label>Choose a Carb</mat-label>
+      <mat-select
+        (selectionChange)="onSelected()"
+        [(ngModel)]="selectedCarb"
+        name="carb">
+        <mat-option *ngFor="let carb of carbList" [value]="carb.name">
+          {{ carb.name }}
+        </mat-option>
+      </mat-select> -->
+      <!-- </mat-optgroup> -->
+      <!-- </mat-autocomplete> -->
+      <!-- </mat-form-field> -->
+
+      <!-- <p>{{ carbChosen.name }} the selected carb is: {{ carbChosen.carbs }}</p> -->
+    </table>
+
+    <!-- Meal 2 -->
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Meal 2 - (Time) (Snack 1)</th>
+          <th>Serving</th>
+          <th>Exchanges</th>
+          <th>Carbs</th>
+          <th>Protein</th>
+          <th>Fat</th>
+          <th>KCals</th>
+        </tr>
+      </thead>
+      <!-- Carb Selection -->
+      <tr class="food-selection">
+        <td class="food-selection">
+          <mat-form-field class="food-selection">
+            <mat-label class="food-selection">Choose a Carb</mat-label>
+            <mat-select
+              (selectionChange)="carbSelected2(carbList, selectedCarb2)"
+              [(ngModel)]="selectedCarb2"
+              name="carb2"
+              class="food-selection"
+            >
+              <mat-option
+                class="food-selection"
+                *ngFor="let carb of carbList"
+                [value]="carb.name"
+              >
+                {{ carb.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>{{ carbChosen2.serving }} {{ carbChosen2.measurement }}</td>
+        <td>{{ carbChosen2.exchanges }} {{ carbChosen2.type }}</td>
+        <td>{{ carbChosen2.carbs }}</td>
+        <td>{{ carbChosen2.protein }}</td>
+        <td>{{ carbChosen2.fat }}</td>
+        <td>{{ carbChosen2.kCals }}</td>
+      </tr>
+      <!-- Protein Selection -->
+      <tr class="food-selection">
+        <td class="food-selection">
+          <mat-form-field class="food-selection">
+            <mat-label class="food-selection"
+              >Choose a Protein Supplement</mat-label
+            >
+            <mat-select
+              (selectionChange)="
+                suppProteinSelected(suppProteinList, selectedSuppProtein)
+              "
+              [(ngModel)]="selectedSuppProtein"
+              name="suppProtein"
+              class="food-selection"
+            >
+              <mat-option
+                class="food-selection"
+                *ngFor="let suppProtein of suppProteinList"
+                [value]="suppProtein.name"
+              >
+                {{ suppProtein.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          {{ suppProteinChosen.serving }} {{ suppProteinChosen.measurement }}
+        </td>
+        <td>{{ suppProteinChosen.exchanges }} {{ suppProteinChosen.type }}</td>
+        <td>{{ suppProteinChosen.carbs }}</td>
+        <td>{{ suppProteinChosen.protein }}</td>
+        <td>{{ suppProteinChosen.fat }}</td>
+        <td>{{ suppProteinChosen.kCals }}</td>
+      </tr>
+      <!-- Fat Selection -->
+      <tr class="food-selection">
+        <td class="food-selection">
+          <mat-form-field class="food-selection">
+            <mat-label class="food-selection">Choose a Fat</mat-label>
+            <mat-select
+              (selectionChange)="fatSelected2(fatList, selectedFat2)"
+              [(ngModel)]="selectedFat2"
+              name="fat2"
+              class="food-selection"
+            >
+              <mat-option
+                class="food-selection"
+                *ngFor="let fat of fatList"
+                [value]="fat.name"
+              >
+                {{ fat.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>{{ fatChosen2.serving }} {{ fatChosen2.measurement }}</td>
+        <td>{{ fatChosen2.exchanges }} {{ fatChosen2.type }}</td>
+        <td>{{ fatChosen2.carbs }}</td>
+        <td>{{ fatChosen2.protein }}</td>
+        <td>{{ fatChosen2.fat }}</td>
+        <td>{{ fatChosen2.kCals }}</td>
+      </tr>
+      <tr class="table-primary">
+        <td>
+          Meal (number) (Meal Name) Totals:
+        </td>
+        <td></td>
+        <td>
+          {{
+            carbChosen2.exchanges +
+              suppProteinChosen.exchanges +
+              fatChosen2.exchanges | number
+          }}
+        </td>
+        <td>
+          {{ carbChosen2.carbs + suppProteinChosen.carbs + fatChosen2.carbs | number}}
+        </td>
+        <td>
+          {{
+            carbChosen2.protein + suppProteinChosen.protein + fatChosen2.protein | number
+          }}
+        </td>
+        <td>
+          {{ carbChosen2.fat + suppProteinChosen.fat + fatChosen2.fat | number}}
+        </td>
+        <td>
+          {{ carbChosen2.kCals + suppProteinChosen.kCals + fatChosen2.kCals | number }}
+        </td>
+      </tr>
+      <!-- </mat-form-field> -->
+      <!-- <mat-label>Choose a Carb</mat-label>
+        <mat-select
+          (selectionChange)="onSelected()"
+          [(ngModel)]="selectedCarb"
+          name="carb">
+          <mat-option *ngFor="let carb of carbList" [value]="carb.name">
+            {{ carb.name }}
+          </mat-option>
+        </mat-select> -->
+      <!-- </mat-optgroup> -->
+      <!-- </mat-autocomplete> -->
+      <!-- </mat-form-field> -->
+
+      <!-- <p>{{ carbChosen.name }} the selected carb is: {{ carbChosen.carbs }}</p> -->
+    </table>
+
+    <!-- Meal 3 -->
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Meal 3 - (Time) (Lunch)</th>
+          <th>Serving</th>
+          <th>Exchanges</th>
+          <th>Carbs</th>
+          <th>Protein</th>
+          <th>Fat</th>
+          <th>KCals</th>
+        </tr>
+      </thead>
+      <!-- Carb Selection -->
+      <tr>
+        <td class="food-selection">
+          <mat-form-field class="food-selection">
+            <mat-label class="food-selection">Choose a Carb</mat-label>
+            <mat-select
+              (selectionChange)="carbSelected3(carbList, selectedCarb3)"
+              [(ngModel)]="selectedCarb3"
+              name="carb"
+              class="food-selection"
+            >
+              <mat-option
+                class="food-selection"
+                *ngFor="let carb of carbList"
+                [value]="carb.name"
+              >
+                {{ carb.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>{{ carbChosen3.serving }} {{ carbChosen3.measurement }}</td>
+        <td>{{ carbChosen3.exchanges }} {{ carbChosen3.type }}</td>
+        <td>{{ carbChosen3.carbs }}</td>
+        <td>{{ carbChosen3.protein }}</td>
+        <td>{{ carbChosen3.fat }}</td>
+        <td>{{ carbChosen3.kCals }}</td>
+      </tr>
+      <!-- Protein Selection -->
+      <tr color="primary" class="food-selection">
+        <td class="food-selection">
+          <mat-form-field class="food-selection">
+            <mat-label class="food-selection">Choose a Protein</mat-label>
+            <mat-select
+              (selectionChange)="
+                proteinSelected2(proteinList, selectedProtein2)
+              "
+              [(ngModel)]="selectedProtein2"
+              name="protein"
+              class="food-selection"
+            >
+              <mat-option
+                class="food-selection"
+                *ngFor="let protein of proteinList"
+                [value]="protein.name"
+              >
+                {{ protein.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>{{ proteinChosen2.serving }} {{ proteinChosen2.measurement }}</td>
+        <td>{{ proteinChosen2.exchanges }} {{ proteinChosen2.type }}</td>
+        <td>{{ proteinChosen2.carbs }}</td>
+        <td>{{ proteinChosen2.protein }}</td>
+        <td>{{ proteinChosen2.fat }}</td>
+        <td>{{ proteinChosen2.kCals }}</td>
+      </tr>
+      <!-- Vegetable Selection -->
+      <tr class="food-selection">
+        <td class="food-selection">
+          <mat-form-field class="food-selection">
+            <mat-label class="food-selection">Choose a Vegetable</mat-label>
+            <mat-select
+              (selectionChange)="
+                vegetableSelected(vegetableList, selectedVegetable)
+              "
+              [(ngModel)]="selectedVegetable"
+              name="vegetable"
+              class="food-selection"
+            >
+              <mat-option
+                class="food-selection"
+                *ngFor="let vegetable of vegetableList"
+                [value]="vegetable.name"
+              >
+                {{ vegetable.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>{{ vegetableChosen.serving }} {{ vegetableChosen.measurement }}</td>
+        <td>{{ vegetableChosen.exchanges }} {{ vegetableChosen.type }}</td>
+        <td>{{ vegetableChosen.carbs }}</td>
+        <td>{{ vegetableChosen.protein }}</td>
+        <td>{{ vegetableChosen.fat }}</td>
+        <td>{{ vegetableChosen.kCals }}</td>
+      </tr>
+
+      <!-- Fat3 Selection -->
+      <tr class="food-selection">
+        <td class="food-selection">
+          <mat-form-field class="food-selection">
+            <mat-label class="food-selection">Choose a Fat</mat-label>
+            <mat-select
+              (selectionChange)="fatSelected3(fatList, selectedFat3)"
+              [(ngModel)]="selectedFat3"
+              name="fat"
+              class="food-selection"
+            >
+              <mat-option
+                class="food-selection"
+                *ngFor="let fat of fatList"
+                [value]="fat.name"
+              >
+                {{ fat.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>{{ fatChosen3.serving }} {{ fatChosen3.measurement }}</td>
+        <td>{{ fatChosen3.exchanges }} {{ fatChosen3.type }}</td>
+        <td>{{ fatChosen3.carbs }}</td>
+        <td>{{ fatChosen3.protein }}</td>
+        <td>{{ fatChosen3.fat }}</td>
+        <td>{{ fatChosen3.kCals }}</td>
+      </tr>
+      <tr class="table-primary">
+        <td>
+          Meal (number) (Meal Name) THIS ONE! Totals:
+        </td>
+        <td></td>
+        <td>
+          {{
+            carbChosen3.exchanges +
+              proteinChosen2.exchanges +
+              vegetableChosen.exchanges +
+              fatChosen3.exchanges | number
+          }}
+        </td>
+        <td>
+          {{
+            carbChosen3.carbs +
+              proteinChosen2.carbs +
+              vegetableChosen.carbs +
+              fatChosen3.carbs | number
+          }}
+        </td>
+        <td>
+          {{
+            carbChosen3.protein +
+              proteinChosen2.protein +
+              vegetableChosen.protein +
+              fatChosen3.protein | number
+          }}
+        </td>
+        <td>
+          {{
+            carbChosen3.fat +
+              proteinChosen2.fat +
+              vegetableChosen.fat +
+              fatChosen3.fat | number
+          }}
+        </td>
+        <td>
+          {{
+            carbChosen3.kCals +
+              proteinChosen2.kCals +
+              vegetableChosen.kCals +
+              fatChosen3.kCals | number
+          }}
+        </td>
+      </tr>
+      <!-- </mat-form-field> -->
+      <!-- <mat-label>Choose a Carb</mat-label>
+        <mat-select
+          (selectionChange)="onSelected()"
+          [(ngModel)]="selectedCarb"
+          name="carb">
+          <mat-option *ngFor="let carb of carbList" [value]="carb.name">
+            {{ carb.name }}
+          </mat-option>
+        </mat-select> -->
+      <!-- </mat-optgroup> -->
+      <!-- </mat-autocomplete> -->
+      <!-- </mat-form-field> -->
+
+      <!-- <p>{{ carbChosen.name }} the selected carb is: {{ carbChosen.carbs }}</p> -->
+    </table>
+
+    <!-- Meal 4 -->
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Meal 4 - (Time) (Snack 2)</th>
+          <th>Serving</th>
+          <th>Exchanges</th>
+          <th>Carbs</th>
+          <th>Protein</th>
+          <th>Fat</th>
+          <th>KCals</th>
+        </tr>
+      </thead>
+      <!-- Carb Selection -->
+      <tr class="food-selection">
+        <td class="food-selection">
+          <mat-form-field class="food-selection">
+            <mat-label class="food-selection">Choose a Carb</mat-label>
+            <mat-select
+              (selectionChange)="carbSelected4(carbList, selectedCarb4)"
+              [(ngModel)]="selectedCarb4"
+              name="carb2"
+              class="food-selection"
+            >
+              <mat-option
+                class="food-selection"
+                *ngFor="let carb of carbList"
+                [value]="carb.name"
+              >
+                {{ carb.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>{{ carbChosen4.serving }} {{ carbChosen4.measurement }}</td>
+        <td>{{ carbChosen4.exchanges }} {{ carbChosen4.type }}</td>
+        <td>{{ carbChosen4.carbs }}</td>
+        <td>{{ carbChosen4.protein }}</td>
+        <td>{{ carbChosen4.fat }}</td>
+        <td>{{ carbChosen4.kCals }}</td>
+      </tr>
+      <!-- Protein Selection -->
+      <tr class="food-selection">
+        <td class="food-selection">
+          <mat-form-field class="food-selection">
+            <mat-label class="food-selection"
+              >Choose a Protein Supplement</mat-label
+            >
+            <mat-select
+              (selectionChange)="
+                suppProteinSelected2(suppProteinList, selectedSuppProtein2)
+              "
+              [(ngModel)]="selectedSuppProtein2"
+              name="suppProtein"
+              class="food-selection"
+            >
+              <mat-option
+                class="food-selection"
+                *ngFor="let suppProtein of suppProteinList"
+                [value]="suppProtein.name"
+              >
+                {{ suppProtein.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          {{ suppProteinChosen2.serving }} {{ suppProteinChosen2.measurement }}
+        </td>
+        <td>
+          {{ suppProteinChosen2.exchanges }} {{ suppProteinChosen2.type }}
+        </td>
+        <td>{{ suppProteinChosen2.carbs }}</td>
+        <td>{{ suppProteinChosen2.protein }}</td>
+        <td>{{ suppProteinChosen2.fat }}</td>
+        <td>{{ suppProteinChosen2.kCals }}</td>
+      </tr>
+      <!-- Fat Selection -->
+      <tr class="food-selection">
+        <td class="food-selection">
+          <mat-form-field class="food-selection">
+            <mat-label class="food-selection">Choose a Fat</mat-label>
+            <mat-select
+              (selectionChange)="fatSelected4(fatList, selectedFat4)"
+              [(ngModel)]="selectedFat4"
+              name="fat4"
+              class="food-selection"
+            >
+              <mat-option
+                class="food-selection"
+                *ngFor="let fat of fatList"
+                [value]="fat.name"
+              >
+                {{ fat.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>{{ fatChosen4.serving }} {{ fatChosen4.measurement }}</td>
+        <td>{{ fatChosen4.exchanges }} {{ fatChosen4.type }}</td>
+        <td>{{ fatChosen4.carbs }}</td>
+        <td>{{ fatChosen4.protein }}</td>
+        <td>{{ fatChosen4.fat }}</td>
+        <td>{{ fatChosen4.kCals }}</td>
+      </tr>
+      <tr class="table-primary">
+        <td>
+          Meal (number) (Snack 2) Totals:
+        </td>
+        <td></td>
+        <td>
+          {{
+            carbChosen4.exchanges +
+              suppProteinChosen2.exchanges +
+              fatChosen4.exchanges | number
+          }}
+        </td>
+        <td>
+          {{ carbChosen4.carbs + suppProteinChosen2.carbs + fatChosen4.carbs | number }}
+        </td>
+        <td>
+          {{
+            carbChosen4.protein +
+              suppProteinChosen2.protein +
+              fatChosen4.protein | number
+          }}
+        </td>
+        <td>
+          {{ carbChosen4.fat + suppProteinChosen2.fat + fatChosen4.fat | number }}
+        </td>
+        <td>
+          {{ carbChosen4.kCals + suppProteinChosen2.kCals + fatChosen4.kCals | number }}
+        </td>
+      </tr>
+      <!-- </mat-form-field> -->
+      <!-- <mat-label>Choose a Carb</mat-label>
+          <mat-select
+            (selectionChange)="onSelected()"
+            [(ngModel)]="selectedCarb"
+            name="carb">
+            <mat-option *ngFor="let carb of carbList" [value]="carb.name">
+              {{ carb.name }}
             </mat-option>
-          </mat-optgroup>
-        </mat-autocomplete>
-      </mat-form-field>
-    </div>
-  </form> -->
+          </mat-select> -->
+      <!-- </mat-optgroup> -->
+      <!-- </mat-autocomplete> -->
+      <!-- </mat-form-field> -->
+
+      <!-- <p>{{ carbChosen.name }} the selected carb is: {{ carbChosen.carbs }}</p> -->
+    </table>
+
+    <!-- Meal 5 -->
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Meal 5 - (Time) (Dinner)</th>
+          <th>Serving</th>
+          <th>Exchanges</th>
+          <th>Carbs</th>
+          <th>Protein</th>
+          <th>Fat</th>
+          <th>KCals</th>
+        </tr>
+      </thead>
+      <!-- Carb Selection -->
+      <tr>
+        <td class="food-selection">
+          <mat-form-field class="food-selection">
+            <mat-label class="food-selection">Choose a Carb</mat-label>
+            <mat-select
+              (selectionChange)="carbSelected5(carbList, selectedCarb5)"
+              [(ngModel)]="selectedCarb5"
+              name="carb"
+              class="food-selection"
+            >
+              <mat-option
+                class="food-selection"
+                *ngFor="let carb of carbList"
+                [value]="carb.name"
+              >
+                {{ carb.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>{{ carbChosen5.serving }} {{ carbChosen5.measurement }}</td>
+        <td>{{ carbChosen5.exchanges }} {{ carbChosen5.type }}</td>
+        <td>{{ carbChosen5.carbs }}</td>
+        <td>{{ carbChosen5.protein }}</td>
+        <td>{{ carbChosen5.fat }}</td>
+        <td>{{ carbChosen5.kCals }}</td>
+      </tr>
+      <!-- Protein Selection -->
+      <tr color="primary" class="food-selection">
+        <td class="food-selection">
+          <mat-form-field class="food-selection">
+            <mat-label class="food-selection">Choose a Protein</mat-label>
+            <mat-select
+              (selectionChange)="
+                proteinSelected3(proteinList, selectedProtein3)
+              "
+              [(ngModel)]="selectedProtein3"
+              name="protein"
+              class="food-selection"
+            >
+              <mat-option
+                class="food-selection"
+                *ngFor="let protein of proteinList"
+                [value]="protein.name"
+              >
+                {{ protein.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>{{ proteinChosen3.serving }} {{ proteinChosen3.measurement }}</td>
+        <td>{{ proteinChosen3.exchanges }} {{ proteinChosen3.type }}</td>
+        <td>{{ proteinChosen3.carbs }}</td>
+        <td>{{ proteinChosen3.protein }}</td>
+        <td>{{ proteinChosen3.fat }}</td>
+        <td>{{ proteinChosen3.kCals }}</td>
+      </tr>
+      <!-- Vegetable Selection -->
+      <tr class="food-selection">
+        <td class="food-selection">
+          <mat-form-field class="food-selection">
+            <mat-label class="food-selection">Choose a Vegetable</mat-label>
+            <mat-select
+              (selectionChange)="
+                vegetableSelected2(vegetableList, selectedVegetable2)
+              "
+              [(ngModel)]="selectedVegetable2"
+              name="vegetable"
+              class="food-selection"
+            >
+              <mat-option
+                class="food-selection"
+                *ngFor="let vegetable of vegetableList"
+                [value]="vegetable.name"
+              >
+                {{ vegetable.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          {{ vegetableChosen2.serving }} {{ vegetableChosen2.measurement }}
+        </td>
+        <td>{{ vegetableChosen2.exchanges }} {{ vegetableChosen2.type }}</td>
+        <td>{{ vegetableChosen2.carbs }}</td>
+        <td>{{ vegetableChosen2.protein }}</td>
+        <td>{{ vegetableChosen2.fat }}</td>
+        <td>{{ vegetableChosen2.kCals }}</td>
+      </tr>
+
+      <!-- Fat3 Selection -->
+      <tr class="food-selection">
+        <td class="food-selection">
+          <mat-form-field class="food-selection">
+            <mat-label class="food-selection">Choose a Fat</mat-label>
+            <mat-select
+              (selectionChange)="fatSelected5(fatList, selectedFat5)"
+              [(ngModel)]="selectedFat5"
+              name="fat"
+              class="food-selection"
+            >
+              <mat-option
+                class="food-selection"
+                *ngFor="let fat of fatList"
+                [value]="fat.name"
+              >
+                {{ fat.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>{{ fatChosen5.serving }} {{ fatChosen5.measurement }}</td>
+        <td>{{ fatChosen5.exchanges }} {{ fatChosen5.type }}</td>
+        <td>{{ fatChosen5.carbs }}</td>
+        <td>{{ fatChosen5.protein }}</td>
+        <td>{{ fatChosen5.fat }}</td>
+        <td>{{ fatChosen5.kCals }}</td>
+      </tr>
+      <tr class="table-primary">
+        <td>
+          Meal (number) (Dinner) Totals:
+        </td>
+        <td></td>
+        <td>
+          {{
+            carbChosen5.exchanges +
+              proteinChosen3.exchanges +
+              vegetableChosen2.exchanges +
+              fatChosen5.exchanges | number
+          }}
+        </td>
+        <td>
+          {{
+            carbChosen5.carbs +
+              proteinChosen3.carbs +
+              vegetableChosen2.carbs +
+              fatChosen5.carbs | number
+          }}
+        </td>
+        <td>
+          {{
+            carbChosen5.protein +
+              proteinChosen3.protein +
+              vegetableChosen2.protein +
+              fatChosen5.protein | number
+          }}
+        </td>
+        <td>
+          {{
+            carbChosen5.fat +
+              proteinChosen3.fat +
+              vegetableChosen2.fat +
+              fatChosen5.fat | number
+          }}
+        </td>
+        <td>
+          {{
+            carbChosen5.kCals +
+              proteinChosen3.kCals +
+              vegetableChosen2.kCals +
+              fatChosen5.kCals | number
+          }}
+        </td>
+      </tr>
+      <!-- </mat-form-field> -->
+      <!-- <mat-label>Choose a Carb</mat-label>
+          <mat-select
+            (selectionChange)="onSelected()"
+            [(ngModel)]="selectedCarb"
+            name="carb">
+            <mat-option *ngFor="let carb of carbList" [value]="carb.name">
+              {{ carb.name }}
+            </mat-option>
+          </mat-select> -->
+      <!-- </mat-optgroup> -->
+      <!-- </mat-autocomplete> -->
+      <!-- </mat-form-field> -->
+
+      <!-- <p>{{ carbChosen.name }} the selected carb is: {{ carbChosen.carbs }}</p> -->
+    </table>
+
+    <!-- Meal 6 -->
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Meal 6 - (Time) (Snack 3)</th>
+          <th>Serving</th>
+          <th>Exchanges</th>
+          <th>Carbs</th>
+          <th>Protein</th>
+          <th>Fat</th>
+          <th>KCals</th>
+        </tr>
+      </thead>
+      <!-- Protein Supplement Selection -->
+      <tr class="food-selection">
+        <td class="food-selection">
+          <mat-form-field class="food-selection">
+            <mat-label class="food-selection"
+              >Choose a Protein Supplement</mat-label
+            >
+            <mat-select
+              (selectionChange)="
+                suppProteinSelected3(suppProteinList, selectedSuppProtein3)
+              "
+              [(ngModel)]="selectedSuppProtein3"
+              name="suppProtein"
+              class="food-selection"
+            >
+              <mat-option
+                class="food-selection"
+                *ngFor="let suppProtein of suppProteinList"
+                [value]="suppProtein.name"
+              >
+                {{ suppProtein.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          {{ suppProteinChosen3.serving }} {{ suppProteinChosen3.measurement }}
+        </td>
+        <td>
+          {{ suppProteinChosen3.exchanges }} {{ suppProteinChosen3.type }}
+        </td>
+        <td>{{ suppProteinChosen3.carbs }}</td>
+        <td>{{ suppProteinChosen3.protein }}</td>
+        <td>{{ suppProteinChosen3.fat }}</td>
+        <td>{{ suppProteinChosen3.kCals }}</td>
+      </tr>
+      <!-- Fat Selection -->
+      <tr class="food-selection">
+        <td class="food-selection">
+          <mat-form-field class="food-selection">
+            <mat-label class="food-selection">Choose a Fat</mat-label>
+            <mat-select
+              (selectionChange)="fatSelected6(fatList, selectedFat6)"
+              [(ngModel)]="selectedFat6"
+              name="fat6"
+              class="food-selection"
+            >
+              <mat-option
+                class="food-selection"
+                *ngFor="let fat of fatList"
+                [value]="fat.name"
+              >
+                {{ fat.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>{{ fatChosen6.serving }} {{ fatChosen6.measurement }}</td>
+        <td>{{ fatChosen6.exchanges }} {{ fatChosen6.type }}</td>
+        <td>{{ fatChosen6.carbs }}</td>
+        <td>{{ fatChosen6.protein }}</td>
+        <td>{{ fatChosen6.fat }}</td>
+        <td>{{ fatChosen6.kCals }}</td>
+      </tr>
+      <tr class="table-primary">
+        <td>
+          Meal (number) (Snack 3) Totals:
+        </td>
+        <td></td>
+        <td>
+          {{ suppProteinChosen3.exchanges + fatChosen6.exchanges | number }}
+        </td>
+        <td>
+          {{ suppProteinChosen3.carbs + fatChosen6.carbs | number }}
+        </td>
+        <td>
+          {{ suppProteinChosen3.protein + fatChosen6.protein | number }}
+        </td>
+        <td>
+          {{ suppProteinChosen3.fat + fatChosen6.fat | number }}
+        </td>
+        <td>
+          {{ suppProteinChosen3.kCals + fatChosen6.kCals | number }}
+        </td>
+      </tr>
+      <!-- </mat-form-field> -->
+      <!-- <mat-label>Choose a Carb</mat-label>
+          <mat-select
+            (selectionChange)="onSelected()"
+            [(ngModel)]="selectedCarb"
+            name="carb">
+            <mat-option *ngFor="let carb of carbList" [value]="carb.name">
+              {{ carb.name }}
+            </mat-option>
+          </mat-select> -->
+      <!-- </mat-optgroup> -->
+      <!-- </mat-autocomplete> -->
+      <!-- </mat-form-field> -->
+
+      <!-- <p>{{ carbChosen.name }} the selected carb is: {{ carbChosen.carbs }}</p> -->
+    </table>
+  </form>
+</mat-card>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+  crossorigin="anonymous"
+></script>

@@ -21,6 +21,8 @@ import { FoodListComponent } from 'src/app/food/food-list/food-list.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from 'src/app/home/home.component';
+import { BodyFatListComponent } from './body-fat/body-fat-list/body-fat-list.component';
+import { BodyFatCreateComponent } from './body-fat/body-fat-create/body-fat-create.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { HomeComponent } from 'src/app/home/home.component';
     FeedbackComponent,
     MealPlanComponent,
     FoodCreateComponent,
+    BodyFatListComponent,
+    BodyFatCreateComponent,
     FoodListComponent,
     HomeComponent
   ],
