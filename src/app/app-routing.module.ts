@@ -14,6 +14,8 @@ import { AttemptComponent } from 'src/app/attempts/attempt.component';
 import { FoodCreateComponent } from 'src/app/food/food-create/food-create.component';
 import { FoodListComponent } from 'src/app/food/food-list/food-list.component';
 import { HomeComponent } from 'src/app/home/home.component';
+import { BodyFatListComponent } from './body-fat/body-fat-list/body-fat-list.component';
+import { BodyFatCreateComponent } from './body-fat/body-fat-create/body-fat-create.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // if path is empty, defaults to main page
@@ -36,6 +38,16 @@ const routes: Routes = [
   {
     path: 'meal-plan',
     component: MealPlanComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'body-fat-list',
+    component: BodyFatListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'body-fat-create',
+    component: BodyFatCreateComponent,
     canActivate: [AuthGuard]
   },
   {

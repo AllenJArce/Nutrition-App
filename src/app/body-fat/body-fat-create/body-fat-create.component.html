@@ -1,0 +1,61 @@
+<h1>THIS IS BODY-FAT CREATE!</h1>
+<mat-card>
+  <mat-spinner *ngIf="isLoading"> </mat-spinner>
+  <form [formGroup]="bodyFatForm" (submit)="onAddBodyFat()" *ngIf="!isLoading">
+    <div>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Choose a date" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #picker></mat-datepicker>
+        <mat-error *ngIf="bodyFatForm.get('date').invalid"
+          >Please choose a valid date.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <input matInput  type="number"
+      formControlName="weight"
+      placeholder="Weight"
+    />
+    <mat-error *ngIf="bodyFatForm.get('weight').invalid"
+      >Please enter a valid weight.</mat-error
+    >
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput  type="number"
+      formControlName="fatPercent"
+      placeholder="Fat Percent"
+    />
+    <mat-error *ngIf="bodyFatForm.get('fatPercent').invalid"
+      >Please enter a valid Fat Percent.</mat-error
+    >
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput  type="number"
+      formControlName="fatMass"
+      placeholder="Fat Mass"
+    />
+    <mat-error *ngIf="bodyFatForm.get('fatMass').invalid"
+      >Please enter a valid Fat Mass.</mat-error
+    >
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput  type="number"
+      formControlName="leanMass"
+      placeholder="Lean Mass"
+    />
+    <mat-error *ngIf="bodyFatForm.get('leanMass').invalid"
+      >Please enter a valid weight.</mat-error
+    >
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" type="submit">
+      Save Food
+    </button>
+
+    (Weight Change) (Body Fat Change) (Lean Mass Change) (Fat Mass Change)
+
+  </form>
+</mat-card>

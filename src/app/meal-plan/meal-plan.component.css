@@ -1,12 +1,45 @@
-mat-form-field {
-  width: 50%;
-}
+/* mat-form-field {
+  width: 80;
+} */
 
 mat-card {
   margin-top: 5%;
-  width: 90%;
+  width: 100%;
 }
 
 table {
+  /* width: 100%;
+  border: 3px solid blue; */
+  /* background-color: blue; */
+}
+
+.food-selection {
   width: 100%;
+  /* width: auto; */
+}
+td {
+  /* border: 3px solid blue; */
+  text-align: center;
+  }
+
+
+/* td {
+  border: 3px solid blue;
+  text-align: center;
+}
+
+tr {
+  border: 3px solid blue;
+}
+
+th {
+  border: 3px solid blue;
+} */
+
+.meal-total {
+  font-weight: bold;
+}
+
+.table-primary {
+  font-weight: bold;
 }
