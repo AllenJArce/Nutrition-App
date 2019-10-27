@@ -2,11 +2,11 @@ export interface BodyFat {
   id: string;
   date: Date;
   weight: number;
-  weightChange: number;
+  // weightChange: number;
   fatPercent: number;
-  percentChange: number;
+  // percentChange: number;
   fatMass: number;
-  fatChange: number;
+  // fatChange: number;
   leanMass: number;
-  leanChange: number;
+  // leanChange: number;
 }

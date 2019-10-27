@@ -28,13 +28,13 @@ export class BodyFatService {
                 id: bodyFat._id,
                 date: bodyFat.date,
                 weight: bodyFat.weight,
-                weightChange: bodyFat.weightChange,
+                // weightChange: bodyFat.weightChange,
                 fatPercent: bodyFat.fatPercent,
-                percentChange: bodyFat.percentChange,
+                // percentChange: bodyFat.percentChange,
                 fatMass: bodyFat.fatMass,
-                fatChange: bodyFat.fatChange,
+                // fatChange: bodyFat.fatChange,
                 leanMass: bodyFat.leanMass,
-                leanChange: bodyFat.leanChange
+                // leanChange: bodyFat.leanChange
               };
             })
           };
