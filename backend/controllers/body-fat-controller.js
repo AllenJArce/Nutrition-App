@@ -5,13 +5,13 @@ exports.createBodyFat = (req, res, next) => {
   const bodyFat = new BodyFat({
     date: req.body.date,
     weight: req.body.weight,
-    weightChange: req.body.weight,
+    // weightChange: req.body.weight,
     fatPercent: req.body.fatPercent,
-    percentChange: req.body.percentChange,
+    // percentChange: req.body.percentChange,
     fatMass: req.body.fatMass,
-    fatChange: req.body.fatChange,
+    // fatChange: req.body.fatChange,
     leanMass: req.body.leanMass,
-    leanChange: req.body.leanChange
+    // leanChange: req.body.leanChange
   });
   bodyFat
     .save()
