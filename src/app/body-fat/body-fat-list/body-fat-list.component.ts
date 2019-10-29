@@ -7,4 +7,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class BodyFatListComponent {
 
+  isLoading = false;
+  userIsAuthenticated = false;
+
 }
