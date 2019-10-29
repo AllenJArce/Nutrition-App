@@ -12,8 +12,8 @@ const BACKEND_URL = environment.apiUrl + '/body-fat/';
 @Injectable({ providedIn: 'root' })
 export class BodyFatService {
   // bF = Body Fat
-  private bFResults: BodyFat[] = [];
-  private bFResultsUpdated = new Subject<{ bFResults: BodyFat[] }>();
+  private bodyFats: BodyFat[] = [];
+  private bFResultsUpdated = new Subject<{ bodyFats: BodyFat[] }>();
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -41,9 +41,9 @@ export class BodyFatService {
         })
       )
       .subscribe(bodyFatData => {
-        this.bFResults = bodyFatData.bodyFats;
+        this.bodyFats = bodyFatData.bodyFats;
         this.bFResultsUpdated.next({
-          bFResults: [...this.bFResults]
+          bodyFats: [...this.bodyFats]
         });
       });
   }
