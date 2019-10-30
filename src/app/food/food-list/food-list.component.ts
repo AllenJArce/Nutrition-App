@@ -73,6 +73,7 @@ export class FoodListComponent implements OnInit {
     private authService: AuthService
   ) {}
 
+  //added this comment
   ngOnInit() {
     this.isLoading = true;
     this.foodService.getFoods();
